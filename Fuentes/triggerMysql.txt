@@ -1,0 +1,21 @@
+
+
+DELIMITER $$
+USE `bdairbnfx`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `bdairbnfx`.`T01I_alquiler` BEFORE INSERT ON `alquiler` FOR EACH ROW
+BEGIN
+set new.UsuCrea = USER();
+set new.FecCrea = NOW();
+set new.UsuModif = USER();
+set new.FecModif = NOW();
+END$$
+DELIMITER ;
+
+DELIMITER $$
+USE `bdairbnfx`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `bdairbnfx`.`T02U_alquiler` BEFORE UPDATE ON `alquiler` FOR EACH ROW
+BEGIN
+set new.UsuModif = USER();
+set new.FecModif = NOW();
+END$$
+DELIMITER ;
